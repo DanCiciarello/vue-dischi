@@ -34,7 +34,7 @@
                             <option v-for="artist in artistsList" :key="artist">{{artist}}</option>
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-outline-light" type="button" @click="onChangeGenre">Filtra</button>
+                            <button class="btn btn-outline-light" type="button" @click="onChangeArtist">Filtra</button>
                         </div>
                     </div>
 
@@ -86,6 +86,9 @@ export default {
         },
         onChangeGenre(){
             this.$emit("changeGenre", this.genreSelected);
+        },
+        onChangeArtist(){
+            this.$emit("changeArtist", this.artistSelected);
         }
     }
 
