@@ -6,22 +6,28 @@
             <div class="row pb-5">
                 <div class="col-3">
                     <p class="text-white">Filtra per genere:</p>
+
+                    <!-- Input select -->
                     <div class="input">
-                        <select class="form-select" @click="getMusicGenres" v-model="genreSelect">
+                        <select class="form-select" @click="getMusicGenres" v-model="genreSelected">
                             <option>All</option>
-                            <option v-for="genre in genreList" :key="genre">{{genre}}</option>
+                            <option v-for="genre in genresList" :key="genre">{{genre}}</option>
                         </select>
                     </div>
+
                 </div>
             </div>
 
             <!-- Lista dischi -->
             <div class="row row-cols-5 gx-5 gy-4">
+
+                <!-- Ciclo i dischi -->
                 <div class="col" v-for="disk in getDisksFiltered" :key="disk.title">
                     <DiskItem :disk-obj="disk" />
                 </div>
+                
             </div>
-            
+
         </div>
     </div>
 </template>
@@ -39,14 +45,14 @@ export default {
         return {
             apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
             disksArray: null,
-            genreList: [],
-            genreSelect: "All",
+            genresList: [],
+            genreSelected: "All",
         };
     },
     computed: {
         getDisksFiltered(){
             // Se è selezionato All
-            if(this.genreSelect === "All"){
+            if(this.genreSelected === "All"){
                 // Ritorno l'array completo
                 return this.disksArray;
             } 
@@ -54,7 +60,7 @@ export default {
             else {
                 // Filtro l'array originale
                 return this.disksArray.filter(disk => {
-                    return disk.genre.includes(this.genreSelect);
+                    return disk.genre.includes(this.genreSelected);
                 })
             }
         }
@@ -69,9 +75,10 @@ export default {
             });
         },
         getMusicGenres(){
+            this.genresList = [];
             this.disksArray.forEach((disk) => {
-                if(!this.genreList.includes(disk.genre)) {
-                    this.genreList.push(disk.genre);
+                if(!this.genresList.includes(disk.genre)) {
+                    this.genresList.push(disk.genre);
                 }
             }
             )
