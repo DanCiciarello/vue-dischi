@@ -1,0 +1,14 @@
+.cdDiskItemContainer {
+    background-color: $primary;
+    height: 100%;
+    padding: 10px;
+
+    .cdDiskPoster {
+        width: 70%;
+    }
+
+    .cdDiskSubtitle {
+        color: #5F6569;
+        display: block;
+    }
+}
