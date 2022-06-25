@@ -1,6 +1,8 @@
 <template>
     <div class="cdDisksListsContainer py-5">
         <div class="container">
+
+            <!-- Sezione filtri -->
             <div class="row pb-5">
                 <div class="col-3">
                     <p class="text-white">Filtra per genere:</p>
@@ -12,11 +14,14 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Lista dischi -->
             <div class="row row-cols-5 gx-5 gy-4">
                 <div class="col" v-for="disk in getDisksFiltered" :key="disk.title">
                     <DiskItem :disk-obj="disk" />
                 </div>
             </div>
+            
         </div>
     </div>
 </template>
